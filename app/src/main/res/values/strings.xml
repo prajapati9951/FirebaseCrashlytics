@@ -1,0 +1,7 @@
+<resources>
+	<string name="app_name">Crashlytics</string>
+	<string name="btn_force">Force a Crash</string>
+	<string name="btn_exception">Throw Exception</string>
+	<string name="google_map_api_key">AIzaSyAWs-8J_zVZ-koS65nHSfRoocFNwvrxELo</string>
+
+</resources>

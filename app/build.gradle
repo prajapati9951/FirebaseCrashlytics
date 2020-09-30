@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+
+android {
+    compileSdkVersion compileAndTargetVersion
+    buildToolsVersion '29.0.3'
+
+    defaultConfig {
+        applicationId "com.example.crashlytics"
+        minSdkVersion 21
+        targetSdkVersion compileAndTargetVersion
+        versionCode 12
+        versionName "2.2"
+        resConfigs('en', 'xxxhdpi')
+        ndk {
+            abiFilters "x86", "x86_64", "arm64-v8a", "armeabi-v7a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            splits.abi.enable = false
+            splits.density.enable = false
+            aaptOptions.cruncherEnabled = false
+            ext.alwaysUpdateBuildId = false
+            /*firebaseCrashlytics {
+				// If you don't need crash reporting for your debug build,
+				// you can speed up your build by disabling mapping file uploading.
+				mappingFileUploadEnabled false
+			}*/
+        }
+    }
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+    }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+/*    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'*/
+/*    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-database:16.0.4'*/
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+
+    // Add the Firebase Crashlytics SDK.
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "com.google.android.gms:play-services-location:17.0.0"
+
+
+    /*implementation 'com.google.firebase:firebase-analytics-unity:6.15.2' // Assets/Firebase/Editor/AnalyticsDependencies.xml:18
+    implementation 'com.google.firebase:firebase-config-unity:6.15.2' // Assets/Firebase/Editor/RemoteConfigDependencies.xml:20
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:13
+    implementation 'com.google.firebase:firebase-crashlytics-unity:6.15.2' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
+
+*/
+}
